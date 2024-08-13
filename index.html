@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #fff;
+        }
+        p {
+            margin: 15px 0 30px;
+            font-size: 1.2rem;
+            color: #ddd;
+        }
+        .timer {
+            font-size: 2.5rem;
+            background: #333;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: #fff;
+            display: inline-block;
+            animation: pulse 1s infinite;
+        }
+        .progress-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .progress-container img {
+            max-width: 80px;
+            height: auto;
+            animation: bounce 1.5s infinite;
+        }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #000;
+            background: #fff;
+            border: 1px solid #000;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .button:hover {
+            background: #f5f5f5;
+        }
+        .button i {
+            margin-right: 8px;
+            color: #000;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thank You!</h1>
+        <p>Your request has been successfully submitted. Please wait for the taxi to arrive. We'll be in touch soon!</p>
+        <div class="timer" id="timer"><span>02:50</span></div>
+        <div class="progress-container">
+            <img src="https://orig00.deviantart.net/a839/f/2015/213/c/a/flappy_bird_by_jubaaj-d93bpnj.png" alt="Flappy Bird Progress">
+        </div>
+        <br>
+        <a href="https://google.com" class="button" target="_blank">
+            <i class="fas fa-comments"></i> Chat with Us
+        </a>
+    </div>
+
+    <script>
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            const interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            let duration = 2 * 60 + 50; // 2 minutes 50 seconds
+            let display = document.querySelector('#timer span');
+            startTimer(duration, display);
+        };
+    </script>
+</body>
+</html>
